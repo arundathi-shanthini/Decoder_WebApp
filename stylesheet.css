@@ -6,7 +6,27 @@
 .btn-circle.btn-xl { 
     width: 90px; 
     height: 90px; 
+    justify-content: center;
     border-radius: 60px; 
     font-size: 50px; 
     text-align: center;
-} 
+    margin-top: 60px;
+    margin-bottom: auto;
+}
+.btn-forcedark
+{
+    background-color: dimgrey;
+    justify-content: center;
+    color: white;
+    width: 80px;
+    height: 50px;
+    margin-top: 25px;
+    padding-top: 0px;
+    padding-bottom: 70px;
+    border-top: 0px;
+    font-size: 50px; 
+}
+.wrapper-div {
+    display:table-cell; 
+    vertical-align: middle;
+  }
