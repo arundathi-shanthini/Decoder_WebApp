@@ -17,7 +17,7 @@ def render_t2b():
 		else:
 			return render_template("/t2b-solve.html", input=message, output=converted_message)
 		
-@app.route('/b2t', methods=['POST', 'GET']) 
+@app.route('/b2t', methods=['POST', 'GET'])
 def render_b2t():
 	if request.method == 'GET':
 		return render_template('/b2t.html',placeholder='Input the message to be decoded here!')
@@ -30,18 +30,18 @@ def render_b2t():
 		
 def convert(dir):
 		message=request.form['message']
+		converted_message=None
 		if message:
-			if dir =='b2t' and (not isbinary(message)) and message.isascii():
+			if dir =='b2t' and isbinary(message):
 				converted_message = BinaryToASCII(message)
-			elif dir == 't2b' and isbinary(message):
+			elif dir == 't2b' and (not isbinary(message)) and message.isascii():
 				converted_message = ASCIIToBinary(message)
-			return message, converted_message
-		else:
-			return message, None
+		return message, converted_message
+		
 
 def isbinary(message):
-    message_set = set(message) 
-    if message_set == {'0', '1'}  or message_set == {'0'} or message_set == {'1'}:
+	message_set = set(message)
+	if message_set == {'0', '1'} or message_set == {'0'} or message_set == {'1'}:
 		return True
 	else:
 		return False
@@ -53,6 +53,6 @@ def ASCIIToBinary(message):
 	encoded_message = [bin(ord(letter))[2:] for letter in message]
 	return ' '.join(['0'*(8-len(letter))+letter for letter in encoded_message])
 			
-if __name__ == "__main__":   
+if __name__ == "__main__":
 	app.debug=True
 	app.run()
