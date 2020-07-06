@@ -9,19 +9,43 @@ def render_index_page():
 @app.route('/t2b', methods=['POST', 'GET'])
 def render_t2b():
 	if request.method == 'GET':
-		return render_template('/t2b.html')
+		return render_template('/t2b.html',placeholder='Input the message to be encoded here!')
 	if request.method == 'POST':
-		message=request.form['encodedMessage']
-		if message:
-			converted_message="Testing"
-			return render_template("/t2b-solve.html", input=message, output=converted_message)
+		message, converted_message = convert('t2b')
+		if converted_message == 'Invalid Input!':
+			return render_template('/t2b.html', placeholder='Invalid Input! Try again :(')
 		else:
-			return render_template('/t2b.html')
-
+			return render_template("/t2b-solve.html", input=message, output=converted_message)
+		
 @app.route('/b2t', methods=['POST', 'GET']) 
 def render_b2t():
-    return render_template('/b2t.html')   
+	if request.method == 'GET':
+		return render_template('/b2t.html',placeholder='Input the message to be decoded here!')
+	if request.method == 'POST':
+		message, converted_message = convert('b2t')
+		if converted_message == 'Invalid Input!':
+			return render_template('/b2t.html', placeholder='Invalid Input! Try again :(')
+		else:
+			return render_template("/b2t-solve.html", input=message, output=converted_message)
+		
+def convert(dir):
+		message=request.form['message']
+		if message:
+			if dir =='b2t':
+				converted_message = BinaryToASCII(message)
+			elif dir == 't2b':
+				converted_message = ASCIIToBinary(message)
+			return message, converted_message
+		else:
+			return message, 'Invalid Input'
 
+def BinaryToASCII(message):
+	return ''.join([chr(int(letter,2)) for letter in message.split()])
+
+def ASCIIToBinary(message):
+	encoded_message = [bin(ord(letter))[2:] for letter in message]
+	return ' '.join(['0'*(8-len(letter))+letter for letter in encoded_message])
+			
 if __name__ == "__main__":   
 	app.debug=True
 	app.run()
