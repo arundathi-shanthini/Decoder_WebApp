@@ -12,7 +12,7 @@ def render_t2b():
 		return render_template('/t2b.html',placeholder='Input the message to be encoded here!')
 	if request.method == 'POST':
 		message, converted_message = convert('t2b')
-		if converted_message == 'Invalid Input!':
+		if converted_message is None:
 			return render_template('/t2b.html', placeholder='Invalid Input! Try again :(')
 		else:
 			return render_template("/t2b-solve.html", input=message, output=converted_message)
@@ -23,7 +23,7 @@ def render_b2t():
 		return render_template('/b2t.html',placeholder='Input the message to be decoded here!')
 	if request.method == 'POST':
 		message, converted_message = convert('b2t')
-		if converted_message == 'Invalid Input!':
+		if converted_message is None:
 			return render_template('/b2t.html', placeholder='Invalid Input! Try again :(')
 		else:
 			return render_template("/b2t-solve.html", input=message, output=converted_message)
@@ -31,13 +31,20 @@ def render_b2t():
 def convert(dir):
 		message=request.form['message']
 		if message:
-			if dir =='b2t':
+			if dir =='b2t' and (not isbinary(message)) and message.isascii():
 				converted_message = BinaryToASCII(message)
-			elif dir == 't2b':
+			elif dir == 't2b' and isbinary(message):
 				converted_message = ASCIIToBinary(message)
 			return message, converted_message
 		else:
-			return message, 'Invalid Input'
+			return message, None
+
+def isbinary(message):
+    message_set = set(message) 
+    if message_set == {'0', '1'}  or message_set == {'0'} or message_set == {'1'}:
+		return True
+	else:
+		return False
 
 def BinaryToASCII(message):
 	return ''.join([chr(int(letter,2)) for letter in message.split()])
