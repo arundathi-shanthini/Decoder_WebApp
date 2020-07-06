@@ -25,7 +25,7 @@
                         <h1 class="display-4">Text</h1>
                     </div>
                     <div class="col-xs-2">
-                        <a class="btn btn-forcedark" href="{{ url_for('render_b2t') }}" role="button" title="Swap">&#8652</a>
+                        <a class="btn btn-forcedark" href="{{ url_for('render_b2t') }}" role="button" title="Swap" method="post">&#8652</a>
                     </div>
                     <div class="col-xs-5">
                         <h1 class="display-4">Binary</h1>
@@ -41,21 +41,23 @@
             <div class="col-xs-5"><h2>Encoded Message: </h2></div>
         </div>
             <div class="row">
-                <div class="col-xs-5">
-                    <textarea class="form-control" style="min-width: 50%; min-height: 250px" id="comment" placeholder="Input the message to be encode here!" ></textarea>
-                </div>
-                <div class="col-xs-2">
-                    <div class="text-center">
-                        <a class="btn btn-primary btn-circle btn-xl" href="#" role="button" title="Convert !">&#8658</a>
+                <form action="{{ url_for('render_t2b') }}" method="post" id="textInput">
+                    <div class="col-xs-5">
+                            <textarea class="form-control" style="min-width: 50%; min-height: 250px" placeholder="Input the message to be encode here!" name="encodedMessage"></textarea>
                     </div>
-                </div>
-                <div class="col-xs-5">
-                    <div class="panel panel-default" style="min-width: 50%; min-height: 250px;  max-height: 250px;overflow-y: scroll;">
-                        <div class="panel-body">
-
+                    <div class="col-xs-2">
+                        <div class="text-center">
+                            <button class="btn btn-primary btn-circle btn-xl" type="submit" form="textInput" title="Convert !" >&#8658</a>
                         </div>
                     </div>
-                </div>
+                </form>
+                    <div class="col-xs-5">
+                        <div class="panel panel-default" style="min-width: 50%; min-height: 250px;  max-height: 250px;overflow-y: scroll;">
+                            <div class="panel-body">
+
+                            </div>
+                        </div>
+                    </div>
             </div> 
             <div class="text-center">
                 <a href="{{ url_for('render_index_page') }}" class="text-muted">Go Back to Main Page</a>

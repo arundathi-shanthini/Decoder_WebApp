@@ -42,11 +42,11 @@
             </div>
             <div class="row">
                 <div class="col-xs-5">
-                    <textarea class="form-control" style="min-width: 50%; min-height: 250px" id="comment" placeholder="Input the message to be decode here!"></textarea>
+                    <textarea class="form-control" style="min-width: 50%; min-height: 250px" id="comment" placeholder="Input the message to be decode here!" method="post"></textarea>
                 </div>
                 <div class="col-xs-2">
                     <div class="text-center">
-                        <a class="btn btn-primary btn-circle btn-xl" href="#" role="button" title="Convert !">&#8658</a>
+                        <a class="btn btn-primary btn-circle btn-xl" href="{{ url_for('render_b2t') }}" role="button" title="Convert !" method="post">&#8658</a>
                     </div>
                 </div>
                 <div class="col-xs-5">
