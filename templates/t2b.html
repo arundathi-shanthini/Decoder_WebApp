@@ -12,7 +12,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/stylesheet.css">
     
     <title>Text to Binary</title>
 </head>
@@ -25,7 +25,7 @@
                         <h1 class="display-4">Text</h1>
                     </div>
                     <div class="col-xs-2">
-                        <a class="btn btn-forcedark" href="b2t.html" role="button" title="Swap">&#8652</a>
+                        <a class="btn btn-forcedark" href="{{ url_for('render_b2t') }}" role="button" title="Swap">&#8652</a>
                     </div>
                     <div class="col-xs-5">
                         <h1 class="display-4">Binary</h1>
@@ -42,7 +42,7 @@
         </div>
             <div class="row">
                 <div class="col-xs-5">
-                    <textarea class="form-control" style="min-width: 50%; min-height: 250px" id="comment" placeholder="Input the message to be encode here!"></textarea>
+                    <textarea class="form-control" style="min-width: 50%; min-height: 250px" id="comment" placeholder="Input the message to be encode here!" ></textarea>
                 </div>
                 <div class="col-xs-2">
                     <div class="text-center">
@@ -58,7 +58,7 @@
                 </div>
             </div> 
             <div class="text-center">
-                <a href="index.html" class="text-muted">Go Back to Main Page</a>
+                <a href="{{ url_for('render_index_page') }}" class="text-muted">Go Back to Main Page</a>
             </div> 
     </div>
 </body>
