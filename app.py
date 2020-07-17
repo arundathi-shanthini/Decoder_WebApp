@@ -40,8 +40,8 @@ def convert(dir):
 		
 
 def isbinary(message):
-	message_set = set(message)
-	if message_set == {'0', '1'} or message_set == {'0'} or message_set == {'1'}:
+	message_set = set(message)-{' '}
+	if  message_set.issubset({'0', '1'}):
 		return True
 	else:
 		return False
