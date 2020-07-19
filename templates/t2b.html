@@ -64,7 +64,7 @@
             <div class="row">
                 <form action="{{ url_for('render_t2b') }}" method="post" id="textInput">
                     <div class="col-xs-5">
-                            <textarea class="form-control" style="min-width: 50%; min-height: 250px" placeholder = "{{ placeholder }}" name="message"></textarea>
+                            <textarea class="form-control {{ change }}" style="min-width: 50%; min-height: 250px" placeholder = "{{ placeholder }}" name="message"></textarea>
                     </div>
                     <div class="col-xs-2">
                         <div class="text-center">

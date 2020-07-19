@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, flash, Markup
 app = Flask(__name__, static_folder='templates/stylesheets')
-app.secret_key = "super secret key"
+app.secret_key = "lubalunilayilasnama"
 
 @app.route('/')
 def render_index_page():
@@ -9,22 +9,22 @@ def render_index_page():
 @app.route('/t2b', methods=['POST', 'GET'])
 def render_t2b():
 	if request.method == 'GET':
-		return render_template('/t2b.html',placeholder='Input the message to be encoded here!')
+		return render_template('/t2b.html',change='', placeholder='Input the message to be encoded here!')
 	if request.method == 'POST':
 		message, converted_message = convert('t2b')
 		if converted_message is None:
-			return render_template('/t2b.html', placeholder='Invalid Input! Try again :(')
+			return render_template('/t2b.html',change='change', placeholder='Invalid Input! Try again :(')
 		else:
 			return render_template("/t2b-solve.html", input=message, output=converted_message)
 		
 @app.route('/b2t', methods=['POST', 'GET'])
 def render_b2t():
 	if request.method == 'GET':
-		return render_template('/b2t.html',placeholder='Input the message to be decoded here!')
+		return render_template('/b2t.html', change = '', placeholder='Input the message to be decoded here!')
 	if request.method == 'POST':
 		message, converted_message = convert('b2t')
 		if converted_message is None:
-			return render_template('/b2t.html', placeholder='Invalid Input! Try again :(')
+			return render_template('/b2t.html', change = 'change', placeholder='Invalid Input! Try again :(')
 		else:
 			return render_template("/b2t-solve.html", input=message, output=converted_message)
 		
